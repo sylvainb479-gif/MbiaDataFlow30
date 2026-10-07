@@ -20,13 +20,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Rendre Gradle executable
-        run: chmod +x extracted_files/MbiaDataFlow/gradlew
+      - name: Configurer Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Compiler l APK Debug
         run: |
           cd extracted_files/MbiaDataFlow
-          ./gradlew assembleDebug
+          gradle assembleDebug
 
       - name: Sauvegarder l APK comme artefact
         uses: actions/upload-artifact@v4
