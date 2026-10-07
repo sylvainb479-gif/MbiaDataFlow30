@@ -1,0 +1,36 @@
+name: Compiler l APK Android
+
+on:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Telecharger le depot
+        uses: actions/checkout@v4
+
+      - name: Configurer Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Rendre Gradle executable
+        run: chmod +x extracted_files/MbiaDataFlow/gradlew
+
+      - name: Compiler l APK Debug
+        run: |
+          cd extracted_files/MbiaDataFlow
+          ./gradlew assembleDebug
+
+      - name: Sauvegarder l APK comme artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: extracted_files/MbiaDataFlow/app/build/outputs/apk/debug/app-debug.apk
+          
