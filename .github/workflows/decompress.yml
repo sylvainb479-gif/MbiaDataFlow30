@@ -1,0 +1,21 @@
+name: Decompresser le ZIP
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Telecharger le depot
+        uses: actions/checkout@v4
+
+      - name: Decompresser l archive
+        run: |
+          unzip MbiaDataFlow.zip -d extracted_files
+
+      - name: Voir les fichiers decompresses
+        run: |
+          ls -la extracted_files
+          
