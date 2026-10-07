@@ -15,7 +15,11 @@ jobs:
         run: |
           unzip MbiaDataFlow.zip -d extracted_files
 
-      - name: Voir les fichiers decompresses
+      - name: Sauvegarder les fichiers dans le depot
         run: |
-          ls -la extracted_files
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add extracted_files/
+          git commit -m "Ajout des fichiers decompressés" || echo "Pas de changement a commiter"
+          git push
           
