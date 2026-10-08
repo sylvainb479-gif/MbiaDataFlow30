@@ -1,11 +1,8 @@
-plugins {
-    id("com.android.application")
-}
+plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
 
 android {
     namespace = "com.mbia.dataflow"
-    compileSdk = 34
-
+    compileSdk = 36
     defaultConfig {
         applicationId = "com.mbia.dataflow"
         minSdk = 26
@@ -13,15 +10,11 @@ android {
         versionCode = 1
         versionName = "1.0.0"
     }
-
     buildTypes {
-        release {
-            isMinifyEnabled = false
-        }
+        release { isMinifyEnabled = false }
     }
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.17.0")
 }
-
